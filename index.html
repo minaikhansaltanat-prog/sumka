@@ -331,6 +331,24 @@
     /* ━━━━━━━━━━━━━━━━━━━━ COMPARISON ━━━━━━━━━━━━━━━━━━━━ */
     #comparison { background: var(--surface-alt); }
     .tbl-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--r-lg); }
+
+    /* Mobile AI summary note (hidden by default, shown on mobile) */
+    .tbl-mob-note {
+      display: none;
+      align-items: center; gap: 1rem;
+      background: var(--brand-light); border: 1px solid var(--brand);
+      border-radius: var(--r); padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .tbl-mob-note .tmn-icon {
+      font-size: 1.5rem; flex-shrink: 0;
+    }
+    .tbl-mob-note .tmn-text strong {
+      display: block; font-size: 1.1rem; color: var(--brand-dark); font-weight: 700;
+    }
+    .tbl-mob-note .tmn-text span {
+      font-size: .8rem; color: var(--text-muted);
+    }
     table { width: 100%; border-collapse: collapse; }
     thead tr { background: var(--brand); }
     thead th {
@@ -534,17 +552,38 @@
       :root { --sec-v: 60px; }
       .nav-links { display: none; }
       .nav-burger { display: flex; }
-      .why-grid  { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
-      .ai-grid   { grid-template-columns: 1fr; }
-      .team-grid { grid-template-columns: 1fr; }
-      .team-card { grid-template-columns: 1fr; }
-      .team-photo { width: 100%; height: 280px; min-height: 280px; object-position: top center; }
-      .totals    { grid-template-columns: 1fr; }
-      .cta-grid  { grid-template-columns: 1fr; }
-      .hero-btns { flex-direction: column; }
-      .sb-div    { display: none; }
-      .hero-stats { gap: 2rem; }
+      .why-grid        { grid-template-columns: 1fr; }
+      .services-grid   { grid-template-columns: 1fr; }
+      .ai-grid         { grid-template-columns: 1fr; }
+      .team-grid       { grid-template-columns: 1fr; }
+      .team-card       { grid-template-columns: 1fr; }
+      .totals          { grid-template-columns: 1fr; }
+      .cta-grid        { grid-template-columns: 1fr; }
+
+      /* ① Hero — stats 2×2 grid, remove overflow */
+      .hero-btns  { flex-direction: column; }
+      .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+      .stat-num   { font-size: 1.8rem; }
+
+      /* ② Stats bar — 2×2 grid, icons centered */
+      .sb-div   { display: none; }
+      .sb-inner {
+        display: grid; grid-template-columns: 1fr 1fr;
+        gap: 1.25rem; justify-items: start;
+      }
+      .sb-item  { gap: .75rem; }
+
+      /* ③ Comparison table — hide 3-4 columns, show mobile note */
+      .tbl-mob-note { display: flex !important; }
+      thead th:nth-child(3), thead th:nth-child(4),
+      tbody td:nth-child(3), tbody td:nth-child(4) { display: none; }
+      .tbl-wrap { border-radius: var(--r); }
+
+      /* ④ Team photo — show face + chest on mobile */
+      .team-photo {
+        width: 100%; height: 380px; min-height: 380px;
+        object-position: 50% 20%;
+      }
     }
   </style>
 
@@ -912,6 +951,14 @@
       <p class="sec-desc">Дәстүрлі маркетинг командасы мен біздің ЖИ жүйесінің айлық шығынын салыстырыңыз.</p>
     </div>
     <div class="reveal">
+      <!-- Mobile: AI cost summary (shown only on mobile via CSS) -->
+      <div class="tbl-mob-note" aria-hidden="true">
+        <div class="tmn-icon">🤖</div>
+        <div class="tmn-text">
+          <strong>ЖИ жүйесімен: ~100 000 ₸/ай</strong>
+          <span>барлық мамандар функциясы бір жүйеде</span>
+        </div>
+      </div>
       <div class="tbl-wrap">
         <table aria-label="Шығын салыстыруы">
           <thead>

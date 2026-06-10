@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SAMGA-NIITS — Сөмке зауыт жеткізушісіне арналған B2B дистрибуция платформасы. ЖИ-маркетинг, дайын база, 100 сату арнасы — бір серіктестікте.">
+  <meta property="og:title" content="SAMGA-NIITS — Сіздің сөмкеңізді бүкіл Қазақстан сатады">
+  <meta property="og:description" content="Зауыт бағасындағы сөмкелерді КР бойынша тұрақты көтерме клиенттерге жеткіземіз. ЖИ-маркетинг, дайын база, 100 сату арнасы.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="kk_KZ">
+  <title>SAMGA-NIITS — Сіздің сөмкеңізді бүкіл Қазақстан сатады</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&family=IBM+Plex+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --surface:      #FFFFFF;
+      --surface-alt:  #F5F5F3;
+      --text:         #1A1A1A;
+      --text-muted:   #555555;
+      --brand:        #1D9E75;
+      --brand-dark:   #0F4C2A;
+      --brand-light:  #E1F5EE;
+      --border:       #E0E0E0;
+
+      --f-display: 'EB Garamond', Georgia, serif;
+      --f-body:    'IBM Plex Sans', system-ui, sans-serif;
+
+      --sec-v: 80px;
+      --r:     8px;
+      --r-lg:  12px;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--f-body);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text);
+      background: var(--surface);
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+    ul  { list-style: none; }
+
+    /* ── ACCESSIBILITY ── */
+    .skip-link {
+      position: fixed; top: -100%; left: 1rem; z-index: 9999;
+      background: var(--brand); color: #fff;
+      padding: .5rem 1rem; border-radius: var(--r);
+      font-weight: 700; font-size: .875rem;
+      transition: top .2s;
+    }
+    .skip-link:focus { top: 1rem; }
+    :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+
+    /* ── TYPE ── */
+    h1, h2 { font-family: var(--f-display); font-weight: 700; line-height: 1.15; color: var(--text); }
+    h3, h4  { font-family: var(--f-body);    font-weight: 700; color: var(--text); }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 3.5%; }
+    section { padding: var(--sec-v) 0; }
+
+    /* ── SECTION HEADER ── */
+    .sec-label {
+      display: inline-flex; align-items: center; gap: .6rem;
+      color: var(--brand);
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      margin-bottom: .875rem;
+    }
+    .sec-label::before {
+      content: ''; width: 22px; height: 2px;
+      background: var(--brand); flex-shrink: 0;
+    }
+    .sec-title  { font-size: clamp(1.8rem, 2.8vw, 2.5rem); margin-bottom: 1rem; }
+    .sec-desc   { font-size: 1.05rem; color: var(--text-muted); max-width: 580px; }
+    .sec-header { margin-bottom: 3rem; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .875rem 1.75rem; border-radius: var(--r);
+      font-family: var(--f-body); font-size: 1rem; font-weight: 700;
+      cursor: pointer; border: 2px solid transparent;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .btn-primary { background: var(--brand); color: #fff; border-color: var(--brand); }
+    .btn-primary:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
+    .btn-outline { background: transparent; color: var(--brand); border-color: var(--brand); }
+    .btn-outline:hover { background: var(--brand-light); color: var(--brand-dark); border-color: var(--brand-dark); }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 2rem;
+      transition: border-color .2s;
+    }
+    .card:hover { border-color: var(--brand); }
+
+    /* ── ICON CHIP ── */
+    .icon-chip {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: var(--brand-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; flex-shrink: 0;
+    }
+
+    /* ── TAG ── */
+    .tag {
+      display: inline-block;
+      background: var(--brand-light); color: var(--brand-dark);
+      font-size: .72rem; font-weight: 700;
+      padding: .25rem .65rem; border-radius: 4px;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ NAV ━━━━━━━━━━━━━━━━━━━━ */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      height: 64px; transition: box-shadow .3s;
+    }
+    #nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.06); }
+    .nav-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 3.5%;
+      height: 64px; display: flex; align-items: center;
+      justify-content: space-between; gap: 2rem;
+    }
+    .nav-logo {
+      font-family: var(--f-display); font-size: 1.2rem; font-weight: 700;
+      white-space: nowrap; color: var(--text);
+    }
+    .nav-logo span { color: var(--brand); }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a {
+      font-size: .875rem; font-weight: 500;
+      color: var(--text-muted); transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--brand-dark); }
+    .nav-cta {
+      background: var(--brand); color: #fff;
+      padding: .5rem 1.25rem; border-radius: var(--r);
+      font-size: .875rem; font-weight: 700;
+      transition: background .2s; white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--brand-dark); }
+
+    /* Mobile burger */
+    .nav-burger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: .5rem;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: all .25s;
+    }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none; position: fixed; top: 64px; left: 0; right: 0;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 1rem 5%; z-index: 99;
+    }
+    .nav-mobile.open { display: block; }
+    .nav-mobile a {
+      display: block; padding: .875rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 1rem; font-weight: 500; color: var(--text-muted);
+    }
+    .nav-mobile a:last-child { border: none; color: var(--brand); font-weight: 700; }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ HERO ━━━━━━━━━━━━━━━━━━━━ */
+    #hero {
+      background: var(--surface-alt);
+      padding-top: calc(64px + 44px);
+      padding-bottom: 60px;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr minmax(0, 440px);
+      gap: 3rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--brand-light); color: var(--brand-dark);
+      font-size: .8rem; font-weight: 700; letter-spacing: .5px;
+      padding: .4rem 1rem; border-radius: 20px; margin-bottom: 1.5rem;
+    }
+    .hero-title { font-size: clamp(2.4rem, 4.5vw, 3.6rem); margin-bottom: 1.25rem; }
+    .hero-sub {
+      font-size: 1.1rem; color: var(--text-muted);
+      max-width: 500px; margin-bottom: 2.25rem;
+    }
+    .hero-btns { display: flex; gap: .875rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .hero-divider { border-top: 1px solid var(--border); padding-top: 2.5rem; }
+    .hero-stats { display: flex; gap: 3rem; flex-wrap: wrap; }
+    .stat-num {
+      display: block; font-family: var(--f-display);
+      font-size: 2.2rem; font-weight: 700; color: var(--brand); line-height: 1;
+    }
+    .stat-lbl { font-size: .85rem; color: var(--text-muted); margin-top: .2rem; }
+
+    /* Hero visual (ss image) */
+    .hero-visual {
+      position: relative; border-radius: var(--r-lg);
+      overflow: hidden;
+    }
+    .hero-visual-img {
+      width: 100%; height: 520px;
+      object-fit: cover; object-position: center;
+      display: block; border-radius: var(--r-lg);
+    }
+    .hero-visual-badge {
+      position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
+      background: rgba(255,255,255,0.95);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap;
+    }
+    .hvb-item { text-align: center; }
+    .hvb-num {
+      font-family: var(--f-display); font-size: 1.4rem; font-weight: 700;
+      color: var(--brand); line-height: 1;
+    }
+    .hvb-lbl { font-size: .72rem; color: var(--text-muted); margin-top: .2rem; }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ STATS BAR ━━━━━━━━━━━━━━━━━━━━ */
+    #statsbar {
+      padding: 2rem 0; background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    .sb-inner {
+      display: flex; align-items: center;
+      justify-content: space-around; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .sb-item { display: flex; align-items: center; gap: 1rem; }
+    .sb-num {
+      font-family: var(--f-display);
+      font-size: 1.6rem; font-weight: 700; color: var(--brand); line-height: 1;
+    }
+    .sb-lbl { font-size: .8rem; color: var(--text-muted); }
+    .sb-div { width: 1px; height: 36px; background: var(--border); }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ WHY ━━━━━━━━━━━━━━━━━━━━ */
+    #why { background: var(--surface-alt); }
+    .why-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; }
+    .why-card { display: flex; flex-direction: column; gap: 1rem; }
+    .why-card h3 { font-size: 1.05rem; }
+    .why-card p { font-size: .9375rem; color: var(--text-muted); }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ SERVICES ━━━━━━━━━━━━━━━━━━━━ */
+    #services { background: var(--surface); }
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+    .svc-card { position: relative; }
+    .svc-card.highlight { border-color: var(--brand); background: var(--brand-light); }
+    .svc-card.highlight .tag { background: var(--brand); color: #fff; }
+    .svc-num {
+      font-family: var(--f-display); font-size: .9rem; font-weight: 700;
+      color: var(--brand); margin-bottom: .875rem;
+    }
+    .svc-card h3 { font-size: 1rem; margin-bottom: .5rem; }
+    .svc-card p { font-size: .9rem; color: var(--text-muted); }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ PACKAGE ━━━━━━━━━━━━━━━━━━━━ */
+    #package { background: var(--surface-alt); }
+    .package-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: start; }
+    .pkg-card { overflow: hidden; padding: 0; }
+    .pkg-head { background: var(--brand); color: #fff; padding: 2rem; }
+    .pkg-head .lbl {
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      opacity: .8; margin-bottom: .5rem;
+    }
+    .pkg-price { font-family: var(--f-display); font-size: 2.8rem; line-height: 1; }
+    .pkg-price-note { font-size: .875rem; opacity: .8; margin-top: .25rem; }
+    .pkg-body { padding: 2rem; }
+    .pkg-list li {
+      display: flex; align-items: flex-start; gap: .875rem;
+      padding: .75rem 0; border-bottom: 1px solid var(--border);
+      font-size: .9375rem;
+    }
+    .pkg-list li:last-child { border: none; }
+    .pkg-check {
+      width: 20px; height: 20px; min-width: 20px; border-radius: 50%;
+      background: var(--brand-light); color: var(--brand);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; font-weight: 700; margin-top: 2px;
+    }
+    .pkg-monthly {
+      margin-top: 1.5rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: .875rem; color: var(--text-muted); line-height: 1.8;
+    }
+    .pkg-monthly strong { color: var(--text); }
+
+    .extras { display: flex; flex-direction: column; gap: 1rem; }
+    .extra-item { padding: 1.5rem; }
+    .extra-item h4 { font-size: .9375rem; margin-bottom: .4rem; }
+    .extra-item p { font-size: .875rem; color: var(--text-muted); }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ AI ━━━━━━━━━━━━━━━━━━━━ */
+    #ai { background: var(--surface); }
+    .ai-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+    .ai-card { }
+    .ai-card h3 { font-size: 1rem; margin-bottom: .5rem; }
+    .ai-card p { font-size: .9rem; color: var(--text-muted); }
+    .ai-saving {
+      margin-top: .875rem; padding-top: .875rem;
+      border-top: 1px solid var(--border);
+      font-size: .8rem; color: var(--brand-dark); font-weight: 600;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .ai-saving::before {
+      content: '↓'; width: 18px; height: 18px;
+      background: var(--brand-light); color: var(--brand);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; font-weight: 900; flex-shrink: 0;
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ COMPARISON ━━━━━━━━━━━━━━━━━━━━ */
+    #comparison { background: var(--surface-alt); }
+    .tbl-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--r-lg); }
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { background: var(--brand); }
+    thead th {
+      padding: 1rem 1.25rem; text-align: left;
+      font-size: .75rem; font-weight: 700; color: #fff;
+      text-transform: uppercase; letter-spacing: 1.5px;
+    }
+    thead th:not(:first-child) { text-align: center; }
+    tbody tr { background: var(--surface); }
+    tbody tr:nth-child(even) { background: var(--surface-alt); }
+    tbody td {
+      padding: .9rem 1.25rem;
+      font-size: .9375rem;
+      border-bottom: 1px solid var(--border);
+    }
+    tbody td:not(:first-child) { text-align: center; }
+    tbody tr:last-child td { border: none; }
+    .c-old  { color: #CC3333; font-weight: 600; }
+    .c-new  { color: var(--brand); font-weight: 700; font-size: 1.05rem; }
+    .c-save { color: var(--brand-dark); font-weight: 700; }
+
+    .totals { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; margin-top: 1.5rem; }
+    .total-box { padding: 1.5rem; text-align: center; }
+    .total-val {
+      font-family: var(--f-display); font-size: 1.5rem; font-weight: 700;
+      line-height: 1; margin-bottom: .4rem;
+    }
+    .total-lbl { font-size: .8rem; color: var(--text-muted); }
+    .total-box:nth-child(1) .total-val { color: #CC3333; }
+    .total-box:nth-child(2) .total-val { color: var(--brand); }
+    .total-box:nth-child(3) .total-val { color: var(--brand-dark); }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ PROCESS ━━━━━━━━━━━━━━━━━━━━ */
+    #process { background: var(--surface); }
+    .steps-row {
+      display: grid; grid-template-columns: repeat(5,1fr);
+      position: relative; gap: 0;
+    }
+    .steps-row::before {
+      content: ''; position: absolute;
+      top: 23px; left: calc(10% + 24px); right: calc(10% + 24px);
+      height: 1px; background: var(--border);
+    }
+    .step-col {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 0 1rem;
+    }
+    .step-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--surface); border: 2px solid var(--brand);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--f-display); font-size: 1rem; font-weight: 700;
+      color: var(--brand); margin-bottom: 1.25rem;
+      position: relative; z-index: 1;
+    }
+    .step-title { font-size: .9rem; font-weight: 700; margin-bottom: .4rem; }
+    .step-desc  { font-size: .8rem; color: var(--text-muted); line-height: 1.6; }
+    .step-time  { margin-top: .75rem; }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ TEAM ━━━━━━━━━━━━━━━━━━━━ */
+    #team { background: var(--surface-alt); }
+    .team-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; }
+
+    .team-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r-lg); overflow: hidden;
+      display: grid; grid-template-columns: 260px 1fr;
+      transition: border-color .2s;
+    }
+    .team-card:hover { border-color: var(--brand); }
+
+    .team-photo-wrap { overflow: hidden; position: relative; }
+    .team-photo {
+      width: 260px; height: 100%; min-height: 360px;
+      object-fit: cover; object-position: top center;
+      display: block;
+    }
+
+    .team-info {
+      padding: 2rem; display: flex; flex-direction: column; justify-content: center; gap: 0;
+    }
+    .team-role {
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--brand); margin-bottom: .5rem;
+    }
+    .team-name {
+      font-family: var(--f-display); font-size: 1.5rem; font-weight: 700;
+      margin-bottom: 1rem; line-height: 1.2;
+    }
+    .team-bio { font-size: .875rem; color: var(--text-muted); line-height: 1.75; }
+    .team-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.25rem; }
+    .team-tag {
+      background: var(--brand-light); color: var(--brand-dark);
+      font-size: .72rem; font-weight: 600;
+      padding: .25rem .65rem; border-radius: 4px;
+    }
+    .team-social { margin-top: 1.25rem; font-size: .875rem; }
+    .team-social a { color: var(--brand); font-weight: 600; transition: color .2s; }
+    .team-social a:hover { color: var(--brand-dark); }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ CASES ━━━━━━━━━━━━━━━━━━━━ */
+    #cases { background: var(--surface); }
+    .cases-ph {
+      border: 2px dashed var(--border); border-radius: var(--r-lg);
+      padding: 5rem 2rem; text-align: center;
+    }
+    .cases-ph strong { display: block; font-size: 1.1rem; margin-bottom: .5rem; }
+    .cases-ph p { color: var(--text-muted); }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ CTA ━━━━━━━━━━━━━━━━━━━━ */
+    #cta { background: var(--surface-alt); }
+    .cta-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin: 2.5rem 0; }
+    .cta-item {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      transition: border-color .2s;
+    }
+    .cta-item:hover { border-color: var(--brand); }
+    .cta-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--brand-light); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .cta-lbl { font-size: .75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+    .cta-val { font-size: .95rem; font-weight: 700; }
+    .cta-val a { color: var(--brand); }
+    .cta-val a:hover { color: var(--brand-dark); }
+    .cta-note { margin-top: 1.25rem; font-size: .9rem; color: var(--text-muted); }
+    .cta-note strong { color: var(--brand); }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ FOOTER ━━━━━━━━━━━━━━━━━━━━ */
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border); padding: 2.5rem 0;
+    }
+    .foot-inner {
+      max-width: 1240px; margin: 0 auto; padding: 0 3.5%;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .foot-logo { font-family: var(--f-display); font-size: 1.1rem; font-weight: 700; }
+    .foot-logo span { color: var(--brand); }
+    .foot-links { display: flex; gap: 1.5rem; }
+    .foot-links a { font-size: .875rem; color: var(--text-muted); transition: color .2s; }
+    .foot-links a:hover { color: var(--brand); }
+    .foot-copy { font-size: .8rem; color: var(--text-muted); }
+    .foot-orgs { font-size: .75rem; color: var(--text-muted); text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ FLOATING ━━━━━━━━━━━━━━━━━━━━ */
+    .float-wa {
+      position: fixed; bottom: 1.75rem; right: 1.75rem;
+      width: 56px; height: 56px; background: #25D366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 998; box-shadow: 0 4px 14px rgba(37,211,102,.4);
+      transition: transform .2s;
+    }
+    .float-wa:hover { transform: scale(1.1); }
+
+    .back-top {
+      position: fixed; bottom: 1.75rem; left: 1.75rem;
+      width: 44px; height: 44px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 50%; display: none; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 998; font-size: 1rem; color: var(--text-muted);
+      transition: border-color .2s, color .2s;
+    }
+    .back-top.show { display: flex; }
+    .back-top:hover { border-color: var(--brand); color: var(--brand); }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ REVEAL ━━━━━━━━━━━━━━━━━━━━ */
+    .reveal {
+      opacity: 0; transform: translateY(22px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+    .reveal-delay-5 { transition-delay: .5s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html    { scroll-behavior: auto; }
+    }
+
+    /* ━━━━━━━━━━━━━━━━━━━━ RESPONSIVE ━━━━━━━━━━━━━━━━━━━━ */
+    @media (max-width: 1024px) {
+      .hero-grid       { grid-template-columns: 1fr; }
+      .hero-visual     { display: none; }
+      .services-grid   { grid-template-columns: repeat(2,1fr); }
+      .ai-grid         { grid-template-columns: repeat(2,1fr); }
+      .package-grid    { grid-template-columns: 1fr; }
+      .steps-row       { grid-template-columns: 1fr; gap: 1.5rem; }
+      .steps-row::before { display: none; }
+      .step-col        { flex-direction: row; align-items: flex-start; text-align: left; gap: 1.25rem; }
+      .step-num        { min-width: 48px; margin-bottom: 0; }
+    }
+    @media (max-width: 768px) {
+      :root { --sec-v: 60px; }
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .why-grid  { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .ai-grid   { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+      .team-card { grid-template-columns: 1fr; }
+      .team-photo { width: 100%; height: 280px; min-height: 280px; object-position: top center; }
+      .totals    { grid-template-columns: 1fr; }
+      .cta-grid  { grid-template-columns: 1fr; }
+      .hero-btns { flex-direction: column; }
+      .sb-div    { display: none; }
+      .hero-stats { gap: 2rem; }
+    }
+  </style>
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "SAMGA-NIITS",
+    "description": "Сөмке зауыт жеткізушісіне арналған B2B дистрибуция платформасы",
+    "address": { "@type": "PostalAddress", "addressLocality": "Алматы", "addressCountry": "KZ" },
+    "telephone": "+77717805442",
+    "email": "kenka82kz@gmail.com",
+    "url": "https://samga-niits.kz"
+  }
+  </script>
+</head>
+<body>
+
+<!-- Skip link -->
+<a href="#main" class="skip-link">Негізгі мазмұнға өту</a>
+
+<!-- ──────────────── NAV ──────────────── -->
+<header role="banner">
+  <nav id="nav" aria-label="Негізгі навигация">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="SAMGA-NIITS басты бет">
+        SAMGA<span>-NIITS</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#why">Неге бізбен</a></li>
+        <li><a href="#services">Қызметтер</a></li>
+        <li><a href="#package">Пакет</a></li>
+        <li><a href="#ai">ЖИ технология</a></li>
+        <li><a href="#team">Команда</a></li>
+        <li><a href="#process">Бастау</a></li>
+      </ul>
+      <a href="#cta" class="nav-cta">Байланысу</a>
+      <button class="nav-burger" aria-label="Мобильді мәзір" aria-expanded="false" id="burger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <nav class="nav-mobile" id="mobileMenu" aria-label="Мобильді мәзір">
+    <a href="#why">Неге бізбен</a>
+    <a href="#services">Қызметтер</a>
+    <a href="#package">Пакет</a>
+    <a href="#ai">ЖИ технология</a>
+    <a href="#team">Команда</a>
+    <a href="#process">Бастау</a>
+    <a href="#cta">Байланысу →</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ──────────────── HERO ──────────────── -->
+<section id="hero" aria-labelledby="hero-title">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-badge">🇰🇿 Қазақстан бойынша B2B дистрибуция</span>
+        <h1 class="hero-title" id="hero-title">
+          Сіздің сөмкеңізді<br>бүкіл Қазақстан сатады
+        </h1>
+        <p class="hero-sub">
+          Зауыт бағасындағы сөмкелерді КР бойынша тұрақты көтерме клиенттерге жеткіземіз.
+          ЖИ-маркетинг, дайын база, 100 сату арнасы — бір серіктестікте.
+        </p>
+        <div class="hero-btns">
+          <a href="#cta" class="btn btn-primary">Тегін кеңес алу →</a>
+          <a href="#package" class="btn btn-outline">Пакет туралы</a>
+        </div>
+        <div class="hero-divider">
+          <div class="hero-stats">
+            <div>
+              <span class="stat-num">100+</span>
+              <div class="stat-lbl">Сату арнасы</div>
+            </div>
+            <div>
+              <span class="stat-num">16+</span>
+              <div class="stat-lbl">Жылдық тәжірибе</div>
+            </div>
+            <div>
+              <span class="stat-num">17М ₸</span>
+              <div class="stat-lbl">Жылдық үнем</div>
+            </div>
+            <div>
+              <span class="stat-num">500+</span>
+              <div class="stat-lbl">Пилот клиент</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual" role="img" aria-label="Сөмке өнімі">
+        <img
+          src="ss.jfif"
+          alt="SAMGA-NIITS — Қазақстан бойынша сөмке дистрибуциясы"
+          class="hero-visual-img"
+          loading="eager"
+        >
+        <div class="hero-visual-badge">
+          <div class="hvb-item">
+            <div class="hvb-num">100+</div>
+            <div class="hvb-lbl">Сату арнасы</div>
+          </div>
+          <div class="hvb-item">
+            <div class="hvb-num">16+</div>
+            <div class="hvb-lbl">Жыл тәжірибе</div>
+          </div>
+          <div class="hvb-item">
+            <div class="hvb-num">17М ₸</div>
+            <div class="hvb-lbl">Жылдық үнем</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── STATS BAR ──────────────── -->
+<div id="statsbar" role="region" aria-label="Негізгі көрсеткіштер">
+  <div class="container">
+    <div class="sb-inner">
+      <div class="sb-item">
+        <div class="icon-chip" aria-hidden="true">🗺️</div>
+        <div>
+          <div class="sb-num">17+</div>
+          <div class="sb-lbl">Облыс пен қала</div>
+        </div>
+      </div>
+      <div class="sb-div" aria-hidden="true"></div>
+      <div class="sb-item">
+        <div class="icon-chip" aria-hidden="true">🤖</div>
+        <div>
+          <div class="sb-num">10</div>
+          <div class="sb-lbl">ЖИ маман орнын алмастырады</div>
+        </div>
+      </div>
+      <div class="sb-div" aria-hidden="true"></div>
+      <div class="sb-item">
+        <div class="icon-chip" aria-hidden="true">📦</div>
+        <div>
+          <div class="sb-num">$10–100</div>
+          <div class="sb-lbl">ЖИ жазылым айына</div>
+        </div>
+      </div>
+      <div class="sb-div" aria-hidden="true"></div>
+      <div class="sb-item">
+        <div class="icon-chip" aria-hidden="true">⏱️</div>
+        <div>
+          <div class="sb-num">2–3 апта</div>
+          <div class="sb-lbl">Стартқа дейін</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ──────────────── WHY ──────────────── -->
+<section id="why" aria-labelledby="why-title">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-label">Неге бұл жұмыс істейді</div>
+      <h2 class="sec-title" id="why-title">Сіздің өніміңізге дайын нарық бар</h2>
+      <p class="sec-desc">
+        Қазақстанның барлық қалалары мен облыстарындағы сөмке сататын магазиндер мен
+        кәсіпкерлердің толық базасы — бізде.
+      </p>
+    </div>
+    <div class="why-grid">
+      <div class="card why-card reveal reveal-delay-1">
+        <div class="icon-chip" aria-hidden="true">🗺️</div>
+        <h3>КР бойынша дайын база</h3>
+        <p>Барлық онлайн және оффлайн сату орындарының анализі бар. Нарықтағы сұраныс пен бәсекелесті білеміз. Облыс пен қала бойынша сегменттелген деректер.</p>
+      </div>
+      <div class="card why-card reveal reveal-delay-2">
+        <div class="icon-chip" aria-hidden="true">🎯</div>
+        <h3>Тікелей байланыс мақсатты аудиториямен</h3>
+        <p>ЦА-мен тікелей байланысқа шығамыз: чат-бот, суық қоңыраулар, рассылка — автоматты режимде. Бір науқанда 500+ потенциал клиентке жету.</p>
+      </div>
+      <div class="card why-card reveal reveal-delay-3">
+        <div class="icon-chip" aria-hidden="true">🤝</div>
+        <h3>Тұрақты көтерме клиент</h3>
+        <p>Бір рет сатпаймыз — үлкен қалалардан тұрақты алатын серіктестерді қалыптастырамыз. Ай сайынғы қайталама тапсырыс — бизнестің тірегі.</p>
+      </div>
+      <div class="card why-card reveal reveal-delay-4">
+        <div class="icon-chip" aria-hidden="true">🤖</div>
+        <h3>ЖИ арқылы шығынсыз маркетинг</h3>
+        <p>Мобилограф, СММ, дизайнер, таргетолог — барін ЖИ атқарады. Айлық шығын: $10–100. Адам командасына қарағанда 15 есе арзан.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── SERVICES ──────────────── -->
+<section id="services" aria-labelledby="svc-title">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-label">Қызметтер</div>
+      <h2 class="sec-title" id="svc-title">Тек каталог емес — толыққанды инфрақұрылым</h2>
+      <p class="sec-desc">Өнімнен бастап соңғы клиентке дейін. Барлығы бір серіктестікте.</p>
+    </div>
+    <div class="services-grid">
+      <div class="card svc-card reveal reveal-delay-1">
+        <div class="svc-num">01</div>
+        <h3>Кәсіби презентациялық сайт</h3>
+        <p>Конверсияға бейімделген сайт: автоматтандырылған өтінім қабылдау, чат-боттар, өнім каталогы. Нарықтық баға 150 000–350 000 ₸ — бізде пакетке кіреді.</p>
+        <span class="tag" style="margin-top:1.25rem; display:inline-block">Сайт + мини-CRM</span>
+      </div>
+      <div class="card svc-card highlight reveal reveal-delay-2">
+        <div class="svc-num">02</div>
+        <h3>100 сату арнасы + автоматтандыру</h3>
+        <p>WhatsApp, Telegram, Email, Instagram, маркетплейстер — барлық арналарда бір уақытта. ЖИ тәулік бойы барлық арналарды басқарады.</p>
+        <span class="tag" style="margin-top:1.25rem; display:inline-block">100 арна</span>
+      </div>
+      <div class="card svc-card reveal reveal-delay-3">
+        <div class="svc-num">03</div>
+        <h3>Чат-бот жүйесі (24/7)</h3>
+        <p>Клиенттердің сұрақтарына жауап береді, өтінімдерді қабылдайды, сатуға дейін жеткізеді. Демалыссыз, ауырыссыз жұмыс.</p>
+        <span class="tag" style="margin-top:1.25rem; display:inline-block">Авто-сату</span>
+      </div>
+      <div class="card svc-card reveal reveal-delay-1">
+        <div class="svc-num">04</div>
+        <h3>Электрондық каталог + CRM</h3>
+        <p>Толыққанды өнім каталогын жасаймыз, CRM жүйесін орнатамыз. Ескі базаға қайта сату, клиент тарихы, автоматты еске салу.</p>
+        <span class="tag" style="margin-top:1.25rem; display:inline-block">CRM + каталог</span>
+      </div>
+      <div class="card svc-card reveal reveal-delay-2">
+        <div class="svc-num">05</div>
+        <h3>Нарық пен бәсекелестер талдауы</h3>
+        <p>Қазақстандағы сөмке нарығын, бәсекелестерді, сұраныс трендтерін зерттейміз. Серіктеске нарыққа шығу стратегиясын жасаймыз.</p>
+        <span class="tag" style="margin-top:1.25rem; display:inline-block">Аналитика</span>
+      </div>
+      <div class="card svc-card reveal reveal-delay-3">
+        <div class="svc-num">06</div>
+        <h3>Суық қоңыраулар + рассылка</h3>
+        <p>Алғашқы 500+ потенциал клиентке ұсыныс жіберіп, нарық реакциясын өлшейміз. Пилот нәтижесі бойынша стратегияны реттейміз.</p>
+        <span class="tag" style="margin-top:1.25rem; display:inline-block">Тікелей продажа</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── PACKAGE ──────────────── -->
+<section id="package" aria-labelledby="pkg-title">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-label">Серіктестік пакеті</div>
+      <h2 class="sec-title" id="pkg-title">Бір инвестиция — толық жүйе</h2>
+      <p class="sec-desc">Бір рет төлеп, өнімнен бастап соңғы клиентке дейінгі толық бизнес-инфрақұрылымды аласыз.</p>
+    </div>
+    <div class="package-grid">
+      <div class="card pkg-card reveal">
+        <div class="pkg-head">
+          <div class="lbl">Негізгі пакет</div>
+          <div class="pkg-price">1 000 000 ₸</div>
+          <div class="pkg-price-note">Бір реттік инвестиция</div>
+        </div>
+        <div class="pkg-body">
+          <ul class="pkg-list">
+            <li><span class="pkg-check">✓</span> Оптом алатын тұрақты клиенттер базасы</li>
+            <li><span class="pkg-check">✓</span> 100 сату арнасы + ЖИ автоматизация</li>
+            <li><span class="pkg-check">✓</span> Кәсіби сайт + мини-CRM жүйесі</li>
+            <li><span class="pkg-check">✓</span> Чат-бот (24/7 авто-жауап, сату)</li>
+            <li><span class="pkg-check">✓</span> ЖИ фотосессия + видео контент</li>
+            <li><span class="pkg-check">✓</span> ЖИ аватар (иесі болмаса да сөйлейді)</li>
+            <li><span class="pkg-check">✓</span> Айлық контент жоспары — автопилотта</li>
+            <li><span class="pkg-check">✓</span> ЖИ таргетолог: 24/7, өз-өзі оптимизация</li>
+            <li><span class="pkg-check">✓</span> Бәсекелес + нарық анализі</li>
+            <li><span class="pkg-check">✓</span> CRM реттеу + ескі базаға қайта сату</li>
+          </ul>
+          <div class="pkg-monthly">
+            <p>Айлық ұстау шығыны: <strong>~100 000 ₸</strong></p>
+            <p>Хостинг + домен: <strong>15 000 ₸/жыл</strong></p>
+            <p>ЖИ жазылым: <strong>$10–100/ай</strong></p>
+          </div>
+          <a href="#cta" class="btn btn-primary" style="margin-top:1.75rem; width:100%; justify-content:center">Серіктес болу →</a>
+        </div>
+      </div>
+      <div class="extras reveal reveal-delay-1">
+        <p class="sec-label" style="margin-bottom:1.5rem">Қосымша опциялар (жеке баға)</p>
+        <div class="card extra-item">
+          <h4>📱 iOS + Android қосымша + сауда алаңы</h4>
+          <p>Өз маркетплейсіңіз, клиенттерге арналған мобильді қосымша. Брендтік онлайн-сауда алаңы.</p>
+          <span class="tag" style="display:inline-block; margin-top:.75rem">Жеке баға</span>
+        </div>
+        <div class="card extra-item">
+          <h4>📈 Сату стратегиясы + жетекшілік</h4>
+          <p>Үлкен қала серіктестерімен жеке жұмыс. Региондық менеджерлер, дистрибутор желісі.</p>
+          <span class="tag" style="display:inline-block; margin-top:.75rem">Жеке баға</span>
+        </div>
+        <div class="card extra-item">
+          <h4>🎯 Толық маркетингтік қызмет пакеті</h4>
+          <p>Инфлюенсер маркетинг, PR, медиа байланыс, брендтің позициялануы.</p>
+          <span class="tag" style="display:inline-block; margin-top:.75rem">Жеке баға</span>
+        </div>
+        <div class="card extra-item">
+          <h4>🏗️ Бренд-дамыту және позициялау</h4>
+          <p>Логотип, фирмалық стиль, оралым дизайны, брендбук. Нарықта ерекшелену.</p>
+          <span class="tag" style="display:inline-block; margin-top:.75rem">Жеке баға</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── AI ──────────────── -->
+<section id="ai" aria-labelledby="ai-title">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-label">Технология</div>
+      <h2 class="sec-title" id="ai-title">ЖИ не атқарады</h2>
+      <p class="sec-desc">
+        10 маманның жұмысын бір жүйе атқарады. Ұйықтамайды, кешіктірмейді, ақша шашпайды.
+      </p>
+    </div>
+    <div class="ai-grid">
+      <div class="card ai-card reveal reveal-delay-1">
+        <div class="icon-chip" style="margin-bottom:1.25rem" aria-hidden="true">📸</div>
+        <h3>ЖИ Фотосессия</h3>
+        <p>Модель, студия, фотограф — ештеңе керек емес. ЖИ өнімнің кәсіби фотоларын жасайды.</p>
+        <div class="ai-saving">Үнем: 20–45 000 ₸/түсірілім</div>
+      </div>
+      <div class="card ai-card reveal reveal-delay-2">
+        <div class="icon-chip" style="margin-bottom:1.25rem" aria-hidden="true">🎭</div>
+        <h3>ЖИ Аватар</h3>
+        <p>Кәсіпкер камера алдында тұрмаса да — цифрлық аватар оның атынан бейне жасайды. 24/7 белсенді.</p>
+        <div class="ai-saving">Үнем: 150–300 000 ₸/ай</div>
+      </div>
+      <div class="card ai-card reveal reveal-delay-3">
+        <div class="icon-chip" style="margin-bottom:1.25rem" aria-hidden="true">📲</div>
+        <h3>Контент автопилот</h3>
+        <p>Reels, карусель, пост, Stories — барлық форматта контент автоматты дайындалады.</p>
+        <div class="ai-saving">Үнем: 150–300 000 ₸/ай (СММ)</div>
+      </div>
+      <div class="card ai-card reveal reveal-delay-1">
+        <div class="icon-chip" style="margin-bottom:1.25rem" aria-hidden="true">🎯</div>
+        <h3>ЖИ Таргетолог 24/7</h3>
+        <p>Жарнамаларды үздіксіз бақылайды, тиімсіздерін тоқтатады, бюджетті оптимизациялайды.</p>
+        <div class="ai-saving">Үнем: 150–350 000 ₸/ай</div>
+      </div>
+      <div class="card ai-card reveal reveal-delay-2">
+        <div class="icon-chip" style="margin-bottom:1.25rem" aria-hidden="true">💬</div>
+        <h3>Чат-бот сату воронкасы</h3>
+        <p>WhatsApp, Telegram, сайт — барлық арналарда. Сұрақ қабылдап, тапсырысқа алып барады.</p>
+        <div class="ai-saving">Үнем: 100 000+ ₸ + 15% комис.</div>
+      </div>
+      <div class="card ai-card reveal reveal-delay-3">
+        <div class="icon-chip" style="margin-bottom:1.25rem" aria-hidden="true">📊</div>
+        <h3>Нарық аналитикасы</h3>
+        <p>Бәсекелестерді бақылайды, сұраныс трендтерін анықтайды, баға ұсынымдарын береді.</p>
+        <div class="ai-saving">Үнем: 100–200 000 ₸/ай (аналитик)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── COMPARISON ──────────────── -->
+<section id="comparison" aria-labelledby="cmp-title">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-label">Тиімділік есебі</div>
+      <h2 class="sec-title" id="cmp-title">ЖИ-сіз қанша шығындайсыз?</h2>
+      <p class="sec-desc">Дәстүрлі маркетинг командасы мен біздің ЖИ жүйесінің айлық шығынын салыстырыңыз.</p>
+    </div>
+    <div class="reveal">
+      <div class="tbl-wrap">
+        <table aria-label="Шығын салыстыруы">
+          <thead>
+            <tr>
+              <th scope="col">Маман / Қызмет</th>
+              <th scope="col">Дәстүрлі шығын (ай)</th>
+              <th scope="col">ЖИ жүйесімен</th>
+              <th scope="col">Үнем</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="c-specialist">СММ маман</td>
+              <td class="c-old">150 000 – 300 000 ₸</td>
+              <td class="c-new" rowspan="6" style="vertical-align:middle">
+                ~100 000 ₸<br>
+                <small style="font-size:.75rem; color:var(--text-muted); font-weight:400">барлығы бірге</small>
+              </td>
+              <td class="c-save">150–300 000 ₸</td>
+            </tr>
+            <tr>
+              <td class="c-specialist">Таргетолог</td>
+              <td class="c-old">150 000 – 350 000 ₸</td>
+              <td class="c-save">150–350 000 ₸</td>
+            </tr>
+            <tr>
+              <td class="c-specialist">Дизайнер</td>
+              <td class="c-old">100 000 – 200 000 ₸</td>
+              <td class="c-save">100–200 000 ₸</td>
+            </tr>
+            <tr>
+              <td class="c-specialist">Мобилограф</td>
+              <td class="c-old">150 000 – 300 000 ₸</td>
+              <td class="c-save">150–300 000 ₸</td>
+            </tr>
+            <tr>
+              <td class="c-specialist">Сату менеджері</td>
+              <td class="c-old">100 000+ ₸ + 15% комис.</td>
+              <td class="c-save">100 000+ ₸</td>
+            </tr>
+            <tr>
+              <td class="c-specialist">Студия + модель</td>
+              <td class="c-old">30 000–45 000 ₸/түсірілім</td>
+              <td class="c-save">Толық үнем</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="totals">
+        <div class="card total-box">
+          <div class="total-val">700 000 – 1 500 000 ₸</div>
+          <div class="total-lbl">Дәстүрлі команда (ай сайын)</div>
+        </div>
+        <div class="card total-box">
+          <div class="total-val">~100 000 ₸</div>
+          <div class="total-lbl">Біздің жүйе (ай сайын)</div>
+        </div>
+        <div class="card total-box">
+          <div class="total-val">7–17 миллион ₸</div>
+          <div class="total-lbl">Жылдық үнем</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── PROCESS ──────────────── -->
+<section id="process" aria-labelledby="proc-title">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-label">Серіктестік жолы</div>
+      <h2 class="sec-title" id="proc-title">Қалай басталады</h2>
+      <p class="sec-desc">5 қадам — және сіздің өніміңіз Қазақстан бойынша сатылуда. Бастауға 30 минут жеткілікті.</p>
+    </div>
+    <div class="steps-row reveal">
+      <div class="step-col">
+        <div class="step-num" aria-hidden="true">1</div>
+        <div>
+          <div class="step-title">Алғашқы кездесу</div>
+          <div class="step-desc">Ассортимент, MOQ, бағалар, логистика — барін талқыламыз. Онлайн немесе оффлайн.</div>
+          <span class="tag step-time">30–60 мин</span>
+        </div>
+      </div>
+      <div class="step-col">
+        <div class="step-num" aria-hidden="true">2</div>
+        <div>
+          <div class="step-title">Каталог + база</div>
+          <div class="step-desc">Сөмкелеріңіздің толық каталогын жасаймыз. КР базасымен сәйкестіреміз.</div>
+          <span class="tag step-time">1–2 апта</span>
+        </div>
+      </div>
+      <div class="step-col">
+        <div class="step-num" aria-hidden="true">3</div>
+        <div>
+          <div class="step-title">Пилот рассылка</div>
+          <div class="step-desc">500+ потенциал клиентке ұсыныс жолдаймыз. Нарық реакциясын өлшейміз.</div>
+          <span class="tag step-time">1 апта</span>
+        </div>
+      </div>
+      <div class="step-col">
+        <div class="step-num" aria-hidden="true">4</div>
+        <div>
+          <div class="step-title">Жүйені іске қосу</div>
+          <div class="step-desc">Ресми келісімге қол қоямыз. ЖИ жүйесін, сайтты, CRM-ді белсендіреміз.</div>
+          <span class="tag step-time">Ресми старт</span>
+        </div>
+      </div>
+      <div class="step-col">
+        <div class="step-num" aria-hidden="true">5</div>
+        <div>
+          <div class="step-title">Тұрақты өсу</div>
+          <div class="step-desc">Ай сайын нәтиже есебі. Жаңа клиенттер, жаңа қалалар, тұрақты айналым.</div>
+          <span class="tag step-time">Үнемі</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── TEAM ──────────────── -->
+<section id="team" aria-labelledby="team-title">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-label">Команда</div>
+      <h2 class="sec-title" id="team-title">Жобаның артындағылар</h2>
+      <p class="sec-desc">SAMGA-NIITS — 16+ жылдық тәжірибемен нарықты жүйелейтін команда.</p>
+    </div>
+    <div class="team-grid">
+
+      <article class="team-card reveal reveal-delay-1">
+        <div class="team-photo-wrap">
+          <img
+            src="komanda imeges/Мешітхан Кеңшілік.png"
+            alt="Мешітхан Кеңшілік — SAMGA-NIITS жоба жетекшісі"
+            class="team-photo"
+            loading="lazy"
+          >
+        </div>
+        <div class="team-info">
+          <div class="team-role">Жоба жетекшісі</div>
+          <h3 class="team-name">Мешітхан Кеңшілік</h3>
+          <p class="team-bio">
+            16+ жыл тәжірибе: ритейл, HoReCa, авто-бизнес, ecommerce, WMS жүйелері.
+            Қытай мен Түркия нарықтарында халықаралық сауда тәжірибесі.
+            Kasipker бизнес қауымдастығы мен Орта Азия кәсіпкерлер одағының мүшесі.
+          </p>
+          <div class="team-tags">
+            <span class="team-tag">Ритейл</span>
+            <span class="team-tag">Ecommerce</span>
+            <span class="team-tag">WMS</span>
+            <span class="team-tag">Халықаралық сауда</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="team-card reveal reveal-delay-2">
+        <div class="team-photo-wrap">
+          <img
+            src="komanda imeges/Saltanat Minaikhan.jpg"
+            alt="Минайхан Салтанат — ЖИ, маркетинг және сату бөлімі жетекшісі"
+            class="team-photo"
+            loading="lazy"
+            style="object-position: center top;"
+          >
+        </div>
+        <div class="team-info">
+          <div class="team-role">ЖИ, маркетинг және сату жетекшісі</div>
+          <h3 class="team-name">Минайхан Салтанат</h3>
+          <p class="team-bio">
+            Кәсіпкер, маркетинг және бизнес-модель жасау шебері. Бренд-менеджер.
+            «Жеңілмейтін махаббат» кітабының авторы.
+            Kasipker бизнес альянысының орынбасары.
+          </p>
+          <div class="team-tags">
+            <span class="team-tag">Маркетинг</span>
+            <span class="team-tag">ЖИ стратегия</span>
+            <span class="team-tag">Бренд</span>
+            <span class="team-tag">Кәсіпкер</span>
+          </div>
+          <div class="team-social">
+            <a href="https://instagram.com/subhankulminayhan" target="_blank" rel="noopener noreferrer">
+              Instagram: @subhankulminayhan ↗
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── CASES ──────────────── -->
+<section id="cases" aria-labelledby="cases-title">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-label">Жобалар мен кейстар</div>
+      <h2 class="sec-title" id="cases-title">Біздің нәтижелеріміз</h2>
+      <p class="sec-desc">Серіктестеріміздің Instagram парақшалары мен пікірлері.</p>
+    </div>
+    <div class="cases-ph reveal">
+      <strong>Серіктестер пікірлері мен кейстар жақында қосылады</strong>
+      <p>Серіктестер инстаграмдары, скриншоттар және нақты нәтижелер осы блокқа орналасады</p>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────── CTA ──────────────── -->
+<section id="cta" aria-labelledby="cta-title">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div class="sec-label">Байланыс</div>
+      <h2 class="sec-title" id="cta-title">Кездесуге дайынбыз</h2>
+      <p class="sec-desc">
+        Алғашқы 30 минуттық кеңес — тегін. Нарықты, MOQ-ды және серіктестік шарттарын талқыламыз.
+      </p>
+      <div class="cta-grid">
+        <a href="tel:+77717805442" class="cta-item">
+          <div class="cta-icon" aria-hidden="true">📞</div>
+          <div>
+            <div class="cta-lbl">Телефон</div>
+            <div class="cta-val">+7 771 780 5442</div>
+          </div>
+        </a>
+        <a href="mailto:kenka82kz@gmail.com" class="cta-item">
+          <div class="cta-icon" aria-hidden="true">✉️</div>
+          <div>
+            <div class="cta-lbl">Email</div>
+            <div class="cta-val">kenka82kz@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://wa.me/77717805442" target="_blank" rel="noopener noreferrer" class="cta-item">
+          <div class="cta-icon" aria-hidden="true">💬</div>
+          <div>
+            <div class="cta-lbl">WhatsApp</div>
+            <div class="cta-val">wa.me/77717805442</div>
+          </div>
+        </a>
+        <div class="cta-item">
+          <div class="cta-icon" aria-hidden="true">📍</div>
+          <div>
+            <div class="cta-lbl">Мекен-жай</div>
+            <div class="cta-val">Алматы, Қазақстан</div>
+          </div>
+        </div>
+      </div>
+      <a href="https://wa.me/77717805442" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size:1.05rem; padding:1rem 2.25rem">
+        WhatsApp арқылы жазу →
+      </a>
+      <p class="cta-note">
+        <strong>Алғашқы кеңес тегін.</strong> Ешқандай міндеттеме жоқ.
+      </p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ──────────────── FOOTER ──────────────── -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="foot-inner">
+      <div class="foot-logo">SAMGA<span>-NIITS</span></div>
+      <nav class="foot-links" aria-label="Футер навигациясы">
+        <a href="#why">Неге бізбен</a>
+        <a href="#services">Қызметтер</a>
+        <a href="#package">Пакет</a>
+        <a href="#team">Команда</a>
+        <a href="#cta">Байланыс</a>
+      </nav>
+      <div class="foot-copy">© 2025 SAMGA-NIITS LLP · Алматы, Қазақстан</div>
+    </div>
+    <div class="foot-orgs">
+      Kasipker бизнес қауымдастығы &nbsp;|&nbsp; Орта Азия кәсіпкерлер одағы мүшесі &nbsp;|&nbsp; Байтақ жасылдар партиясы — Алматы филиалы
+    </div>
+  </div>
+</footer>
+
+<!-- ──────────────── FLOATING ──────────────── -->
+<a href="https://wa.me/77717805442" class="float-wa" target="_blank" rel="noopener noreferrer"
+   aria-label="WhatsApp арқылы хабарласу">
+  <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.557 4.117 1.528 5.847L.057 23.5l5.799-1.449A11.955 11.955 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.897 0-3.668-.52-5.184-1.426l-.371-.22-3.443.861.876-3.354-.242-.386A9.955 9.955 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+  </svg>
+</a>
+
+<button class="back-top" id="backTop" aria-label="Жоғарыға қайту">↑</button>
+
+<script>
+  /* ── NAV scroll shadow ── */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 10);
+    document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+  }, { passive: true });
+
+  /* ── Back to top ── */
+  document.getElementById('backTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ── Mobile menu ── */
+  const burger = document.getElementById('burger');
+  const menu   = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+  });
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', false);
+    });
+  });
+
+  /* ── Scroll reveal (Intersection Observer) ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── Active nav link highlight ── */
+  const sections = document.querySelectorAll('section[id], div[id="statsbar"]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => {
+          l.style.color = l.getAttribute('href') === '#' + e.target.id
+            ? 'var(--brand-dark)' : '';
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+  sections.forEach(s => io.observe(s));
+</script>
+
+</body>
+</html>

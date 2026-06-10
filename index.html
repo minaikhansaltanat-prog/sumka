@@ -36,7 +36,7 @@
 
     /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: var(--f-body);
       font-size: 16px;
@@ -539,7 +539,7 @@
     /* ━━━━━━━━━━━━━━━━━━━━ RESPONSIVE ━━━━━━━━━━━━━━━━━━━━ */
     @media (max-width: 1024px) {
       .hero-grid       { grid-template-columns: 1fr; }
-      .hero-visual     { display: none; }
+      .hero-visual     { display: none; }  /* shown again on phone below */
       .services-grid   { grid-template-columns: repeat(2,1fr); }
       .ai-grid         { grid-template-columns: repeat(2,1fr); }
       .package-grid    { grid-template-columns: 1fr; }
@@ -560,7 +560,23 @@
       .totals          { grid-template-columns: 1fr; }
       .cta-grid        { grid-template-columns: 1fr; }
 
-      /* ① Hero — stats 2×2 grid, remove overflow */
+      /* ① Hero — image above text, stats 2×2 grid */
+      .hero-grid  {
+        display: flex; flex-direction: column;
+        width: 100%; gap: 1.5rem;
+      }
+      .hero-visual {
+        display: block; order: -1;
+        width: 100%; border-radius: var(--r);
+        overflow: hidden;
+      }
+      .hero-visual-img  { height: 240px; border-radius: var(--r); }
+      .hero-visual-badge {
+        left: 1rem; right: 1rem; bottom: 1rem;
+        padding: .9rem 1rem; gap: .5rem;
+      }
+      .hvb-num    { font-size: 1.25rem; }
+      .hvb-label  { font-size: .65rem; }
       .hero-btns  { flex-direction: column; }
       .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
       .stat-num   { font-size: 1.8rem; }
